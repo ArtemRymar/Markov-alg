@@ -54,6 +54,7 @@ G.add_node(2)
 G.add_edge(1, 2, name='01')
 G.add_edge(2,3, name='lol')
 G.add_edge(2, 1, name='0001')
+G.add_edge(1,2, name='353')
 
 
 # Отрисовка графа с искривленными ребрами
@@ -82,13 +83,14 @@ print(straightEdges)
 
 
 edge_labels = nx.get_edge_attributes(G, "name")
-edge_labels[(1,2,0)] = '10'
 nx.draw_networkx_edge_labels(G, pos,edge_labels=edge_labels, connectionstyle="arc3,rad=0.12")
 edgesc = nx.draw_networkx_edges(G, pos,edgelist=curveEdges, connectionstyle="arc3,rad=0.2")
 edgess = nx.draw_networkx_edges(G, pos, edgelist=straightEdges)
 
-edge_labels[(1,2,0)] = '10'
-print(edge_labels)
+for u, v, data in G.edges(data=True):
+    names = data
+    print(f"Edge from {u} to {v}, name: {edge_labels[(u,v)]}")
+
 
 
 
